@@ -14,10 +14,6 @@ Regexes are most commonly used in one of two ways:
 - `print(r'Use raw strings whenever possible')`
 - Most ordinary characters, like 'A', 'a', or '0', are the simplest regular expressions; they simply match themselves.
 
-
-## Methods
-- `re.findall(r'needle', 'haystack')`
-
 ## Vocabulary
 - Character Class is a set of characters that we wish to match
 
@@ -25,11 +21,12 @@ Regexes are most commonly used in one of two ways:
 | metacharacter | matches                                 |
 | ------------- | --------------------------------------- |
 | `.`           | anything                                |
-| `^`           | anything except for what's after this   |
+| `[^n]`        | anything except for regex after the ^   |
+| `^`           | anything starting with regex after ^    |
 | `*`           | zero or more times                      |
 | `+`           | one or more times                       |
 | `?`           | matches either once or zero times       |
-| `$`           |
+| `$`           |   
 | `?`           |
 | `{}`          |
 | `/`           |
@@ -61,7 +58,6 @@ Regexes are most commonly used in one of two ways:
 - `ca+t` matches `cat`, `caat`, etc.. but no `ct` b/c `+` requires at least one occurrence.
 
 
-
 ## More Exercises 
 - https://www.w3resource.com/python-exercises/re/
 - https://developers.google.com/edu/python/exercises/baby-names
@@ -70,3 +66,17 @@ Regexes are most commonly used in one of two ways:
 - Library Reference - https://docs.python.org/3/library/re.html
 - How To - https://docs.python.org/3/howto/regex.html
 - https://developers.google.com/edu/python/regular-expressions#repetition
+
+## RE Methods
+- `.match()` determines if the RE matches at the beginning of the string
+- `.search()` scans the entire string
+- `.findall()` finds all substrings where the RE and returns them as a list
+- `.finditer` finds all substrings and returns an iterator (for lazy usage)
+
+
+## Match Object Methods
+- `.group()` return the string matched by the RE
+- `.start()` return the starting position of the match
+- `.end()` return the ending position of the match
+- `.span()` return a tuple containing (start, end) positions of the match
+
