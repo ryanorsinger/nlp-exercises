@@ -80,3 +80,11 @@ Regexes are most commonly used in one of two ways:
 - `.end()` return the ending position of the match
 - `.span()` return a tuple containing (start, end) positions of the match
 
+## Anchors
+There are several special metacharacters that don't match any individual characters, but serve as an "anchor" for the rest of the regular expression.
+
+| metacharacter |  matches                       |
+| ------------- | ------------------------------ |
+| `^`           | The start of the string/line   |
+| `$`           | The end of the string/line     |
+| `\b`          | A word boundary                |
