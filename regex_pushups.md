@@ -26,3 +26,17 @@
 
 
 
+Find all occurrences of one capital character followed by four or more letters.
+
+# Find the last digit in the string
+re.findall(r'\d$', "ba323b9")
+
+# Find the last 3 digits of a string
+re.findall(r'\d{3}$', "ba323b29222")
+
+# Find the last character of the string
+re.findall(r'.$', "whatever")
+
+# Find two of anything at the end of a string
+re.findall(r'.{2}$', "whatever")
+

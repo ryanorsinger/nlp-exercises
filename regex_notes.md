@@ -22,7 +22,7 @@ Regexes are most commonly used in one of two ways:
 | ------------- | --------------------------------------- |
 | `.`           | anything                                |
 | `[^n]`        | anything except for regex after the ^   |
-| `^`           | anything starting with regex after ^    |
+| `^`           | starts with pattern after the ^         |
 | `*`           | zero or more times                      |
 | `+`           | one or more times                       |
 | `?`           | matches either once or zero times       |
@@ -56,7 +56,6 @@ Regexes are most commonly used in one of two ways:
 - `re.findall(r'[^2-7]', "123456789")` returns `["1", "8", "9"]`
 - `ca*t` matches `ct`, `cat`, `caat`, and `caaaaat`
 - `ca+t` matches `cat`, `caat`, etc.. but no `ct` b/c `+` requires at least one occurrence.
-
 
 ## More Exercises 
 - https://www.w3resource.com/python-exercises/re/
