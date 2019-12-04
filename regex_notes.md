@@ -87,3 +87,8 @@ There are several special metacharacters that don't match any individual charact
 | `^`           | The start of the string/line   |
 | `$`           | The end of the string/line     |
 | `\b`          | A word boundary                |
+
+
+
+
+re.sub(needle, replacement, haystack)

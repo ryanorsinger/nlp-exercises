@@ -40,3 +40,8 @@ re.findall(r'.$', "whatever")
 # Find two of anything at the end of a string
 re.findall(r'.{2}$', "whatever")
 
+
+
+
+# Find the first letter of every word
+\b is an anchor for a word boundary
