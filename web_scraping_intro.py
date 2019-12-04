@@ -9,15 +9,7 @@ response = get(url, headers=headers)
 
 soup = BeautifulSoup(response.content, 'html.parser')
 
-# get the html of all paragraphs
-# paragraphs = soup.find_all("p")
-
-
-# output = []
-# for paragraph in paragraphs:
-#     output.append(paragraph.get_text())
-
-# print(output)
-
-
 # Using CSS selector
+paragraphs = soup.select("p")
+
+print(paragraphs)
