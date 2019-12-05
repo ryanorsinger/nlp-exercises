@@ -5,16 +5,13 @@ import os
 import pandas as pd
 
 def get_news_articles():
+    filename = 'inshorts_news_articles.csv'
 
-    return make_new_request()
-
-    # filename = 'inshorts_news_articles.csv'
-
-    # # check for presence of the file or make a new request
-    # if os.path.exists(filename):
-    #     return pd.read_csv(filename)
-    # else:
-    #     return make_new_request()
+    # check for presence of the file or make a new request
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    else:
+        return make_new_request()
 
 def get_articles_from_topic(url):
     headers = {'user-agent': 'Codeup Bayes Instructor Example'}
@@ -26,6 +23,7 @@ def get_articles_from_topic(url):
     articles = soup.select(".news-card")
 
     for article in articles: 
+        # attribute selector is .select("[key='value']")
         title = article.select("[itemprop='headline']")[0].get_text()
         content = article.select("[itemprop='articleBody']")[0].get_text()
         author = article.select(".author")[0].get_text()
@@ -40,7 +38,6 @@ def get_articles_from_topic(url):
             'published_date': published_date,
         }
         output.append(article_data)
-
 
     return output
 
@@ -59,8 +56,6 @@ def make_new_request():
         # We use .extend in order to make a flat output list.
         output.extend(get_articles_from_topic(url))
 
-    print("stuff")
-    print(output)
     df = pd.DataFrame(output)
     df.to_csv('inshorts_news_articles.csv') 
 
