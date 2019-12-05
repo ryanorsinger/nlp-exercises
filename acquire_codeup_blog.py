@@ -8,23 +8,29 @@ def get_blog_posts():
     filename = './codeup_blog_posts.csv'
 
     # check for presence of the file or make a new request
-    if path.exists(filename):
+    if os.path.exists(filename):
         return pd.read_csv(filename)
     else:
         return make_new_request()
 
-def make_dictionary_from_article(url):
+def make_dictionary_from_article(url): 
+    # Set header and user agent to increase likelihood that your request get the response you want
     headers = {'user-agent': 'Codeup Bayes Instructor Example'}
-    response = get(url, headers=headers)
-    soup = BeautifulSoup(response.content, 'html.parser')
 
-    title = soup.title
+    # This is the actual HTTP GET request that python will send across the internet
+    response = get(url, headers=headers)
+
+    # response.text is a single string of all the html from that page
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    title = soup.title.get_text()
     body = soup.select("div.mk-single-content.clearfix")[0].get_text()
 
-    return {
-        "title": title,
-        "body": body
-    }
+    output = {}
+    output["title"] = title
+    output["body"] = body
+    return output
+
 
 def make_new_request():
     urls = [
@@ -38,9 +44,12 @@ def make_new_request():
     output = []
     
     for url in urls:
-        output.append(make_dictionary_from_article(url))
+        article_dictionary = make_dictionary_from_article(url)
+        output.append(article_dictionary)
 
     df = pd.DataFrame(output)
     df.to_csv('./codeup_blog_posts.csv') 
 
     return df
+
+
