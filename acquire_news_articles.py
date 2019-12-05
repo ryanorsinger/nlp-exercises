@@ -5,8 +5,10 @@ import os
 import pandas as pd
 
 def get_news_articles():
-    return make_new_request()   
-    # filename = './inshorts_news_articles.csv'
+
+    return make_new_request()
+
+    # filename = 'inshorts_news_articles.csv'
 
     # # check for presence of the file or make a new request
     # if os.path.exists(filename):
@@ -21,26 +23,25 @@ def get_articles_from_topic(url):
 
     output = []
 
-    articles = soup.select("news-card z-depth-1")
+    articles = soup.select(".news-card")
 
     for article in articles: 
         title = article.select("[itemprop='headline']")[0].get_text()
         content = article.select("[itemprop='articleBody']")[0].get_text()
         author = article.select(".author")[0].get_text()
         published_date = article.select(".time")[0]["content"]
-        catetogry = response.url.split("/")[-1]
+        category = response.url.split("/")[-1]
 
-        stuff = {
+        article_data = {
             'title': title,
             'content': content,
             'category': category,
             'author': author,
             'published_date': published_date,
         }
+        output.append(article_data)
 
-        output.append(stuff)
 
-    # print(stuff)
     return output
 
 
@@ -61,7 +62,7 @@ def make_new_request():
     print("stuff")
     print(output)
     df = pd.DataFrame(output)
-    df.to_csv('./inshorts_news_articles.csv') 
+    df.to_csv('inshorts_news_articles.csv') 
 
     return df
 
